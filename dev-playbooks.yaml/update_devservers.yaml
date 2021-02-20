@@ -1,0 +1,14 @@
+---
+  - name: Update dev Servers
+    hosts: dev
+    gather_facts: yes
+    tasks:
+      - name: Update dev server
+        when: ansible_facts['distribution'] == "CentOS"
+        yum: 
+          update_only: yes
+      
+      - name: Update dev server
+        when: ansible_facts['distribution'] == "Ubuntu"
+        apt: 
+          state: latest
